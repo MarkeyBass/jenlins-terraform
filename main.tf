@@ -60,6 +60,16 @@
 # region=us-east-1
 # output=json
 
+
+# Another check
+# ================
+# jenkins@32b8a66b46ff:~$ ls -la .aws
+# total 16
+# drwxr-xr-x  2 jenkins jenkins 4096 May 18 16:33 .
+# drwxr-xr-x 21 jenkins jenkins 4096 May 18 16:32 ..
+# -rw-r--r--  1 jenkins jenkins   39 May 18 16:33 cconfig
+# -rw-r--r--  1 jenkins jenkins  116 May 18 16:33 credentials
+
 # TERRAFORM CONFIGURED!!! 🎉🎉🎉
 
 # creating pipeline that will will get terraform code from github and exercutes it
@@ -76,5 +86,46 @@ resource "aws_instance" "terafform-jenkins" {
   }
 }  
 
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-bucket-name"
+  acl    = "private"
+
+  tags = {
+    Name = "My Bucket"
+  }
+}
+
 
 # Putting it to gitub
+# ======================
+# git remote add origin git@github.com:MarkeyBass/jenlins-terraform.git
+# git branch -M main
+# git push -u origin main
+
+
+# Inside JenkinsController GUI
+# ==============================
+
+
+# pipeline {
+#     agent any 
+#     stages {
+#         stage('Checkout') {
+#             steps{
+#                 git branch: "main", url: "https://github.com/MarkeyBass/jenlins-terraform.git"
+#             }
+#         }
+#         stage('Terraform init') {
+#             steps {
+#                 sh 'terraform init'
+#             }
+#         }
+#         // There is no interaction with the terminal we do directly apply
+#         // we have --auto-approve so there is no need of terraform plan
+#         stage('Terraform apply') {
+#             steps {
+#                 sh 'terraform apply --auto-approve'
+#             }
+#         }
+#     }
+# }
