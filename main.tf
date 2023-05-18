@@ -89,10 +89,6 @@ resource "aws_instance" "terafform-jenkins" {
 resource "aws_s3_bucket" "terraform-jenkins-bucket" {
   bucket = "terraform-jenkins-bucket-1"
 
-  # tags = {
-  #   Name = "terraform-jenkins-bucket-1"
-  #   Environment = "Dev"
-  # }
 }
 
 
