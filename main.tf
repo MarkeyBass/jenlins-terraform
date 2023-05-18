@@ -88,7 +88,6 @@ resource "aws_instance" "terafform-jenkins" {
 
 resource "aws_s3_bucket" "terraform-bucket" {
   bucket = "terraform-bucket-1"
-  acl    = "private"
 
   tags = {
     Name = "terraform-bucket-1"
