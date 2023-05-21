@@ -93,7 +93,7 @@ resource "aws_instance" "terafform-jenkins" {
 }  
 
 resource "aws_s3_bucket" "terraform-jenkins-bucket" {
-  bucket = "terraform-jenkins-bucket-1"
+  bucket = "terraform-jenkins-bucket-pub"
 
 }
 
@@ -102,7 +102,7 @@ resource "aws_s3_bucket" "terraform-jenkins-bucket" {
 # }
 
 
-resource "aws_s3_bucket_public_access_block" "terraform-jenkins-bucket2" {
+resource "aws_s3_bucket_public_access_block" "terraform-jenkins-bucket" {
   bucket = aws_s3_bucket.terraform-jenkins-bucket.id
 
   block_public_acls   = false

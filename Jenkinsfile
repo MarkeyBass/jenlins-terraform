@@ -21,25 +21,25 @@ pipeline {
             }
         }
         // creating enviroment graph and dropping it into the bucket
-        stage('Uploading graph to s3 bucket') {
-            steps {
-                script {
-                    def timestamp
-                    if (fileExists('graph.png')) {
+        // stage('Uploading graph to s3 bucket') {
+        //     steps {
+        //         script {
+        //             def timestamp
+        //             if (fileExists('graph.png')) {
                                              
                         
-                        withAWS(credentials: 'awscredentials', region: 'us-east-1') {
-                            s3Upload(
-                                file: "graph.png",
-                                bucket: "${AWS_BUCKET}",
-                                path: "graph.png"
-                            )
-                        }                        
-                    } else {
-                        error('No graph.png found')
-                    }
-                }
-            }
-        }
+        //                 withAWS(credentials: 'awscredentials', region: 'us-east-1') {
+        //                     s3Upload(
+        //                         file: "graph.png",
+        //                         bucket: "${AWS_BUCKET}",
+        //                         path: "graph.png"
+        //                     )
+        //                 }                        
+        //             } else {
+        //                 error('No graph.png found')
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
