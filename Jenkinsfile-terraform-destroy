@@ -1,11 +1,14 @@
 pipeline {
-    agent any 
+    agent any
+    parameters {
+      string(name: 'bucket_url', defaultValue: 's3://terraform-jenkins-bucket-pub')
+    } 
     stages {
         stage('Terraform destroy') {
             steps {
               dir('~/workspace/terraform-job') {
                 // sh 'cd /var/jenkins/workspace/terraform-job'
-                sh 'aws s3 rm s3://terraform-jenkins-bucket-pub/graph.png'
+                sh "aws s3 rm ${params.bucket_url}/graph.png"
                 sh 'terraform destroy --auto-approve'
               }
             }
