@@ -1,5 +1,11 @@
 pipeline {
     agent any 
+
+    parameters {
+        string(name: 'bucket_url', defaultValue: 's3://terraform-jenkins-bucket-pub')
+        // params.graph_file && params.graph_img defined in the jenkins console
+    }
+
     stages {
         stage('Terraform init') {
             steps {
@@ -23,29 +29,8 @@ pipeline {
         }
         stage('Uploading graph to s3 bucket') {
             steps {
-                sh "aws s3 cp ./${params.graph_img} s3://terraform-jenkins-bucket-pub"
+                sh "aws s3 cp ./${params.graph_img} ${params.bucket_url}"
             }
         }
-        // creating enviroment graph and dropping it into the bucket
-        // stage('Uploading graph to s3 bucket') {
-        //     steps {
-        //         script {
-        //             def timestamp
-        //             if (fileExists('graph.png')) {
-                                             
-                        
-        //                 withAWS(credentials: 'awscredentials', region: 'us-east-1') {
-        //                     s3Upload(
-        //                         file: "graph.png",
-        //                         bucket: "${AWS_BUCKET}",
-        //                         path: "graph.png"
-        //                     )
-        //                 }                        
-        //             } else {
-        //                 error('No graph.png found')
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
