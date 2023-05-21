@@ -72,10 +72,14 @@
 
 # TERRAFORM CONFIGURED!!! 🎉🎉🎉
 
-
+# Other instalations
+#  --> # 💲 sudo docker exec -u root -it JenkinsController bash
 # install graph
 # ==============
 # 💲 sudo apt install graphviz
+# install aws cli
+# ================
+# 💲 sudo apt install awscli
 
 # creating pipeline that will will get terraform code from github and exercutes it
 # ===================================================================================

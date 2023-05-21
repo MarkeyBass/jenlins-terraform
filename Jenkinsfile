@@ -20,6 +20,11 @@ pipeline {
                 sh 'dot -Tpng graph.dot -o graph.png'
             }
         }
+        stage('Uploading graph to s3 bucket') {
+            steps {
+                'aws s3 cp ./graph.png terraform-jenkins-bucket-pub'
+            }
+        }
         // creating enviroment graph and dropping it into the bucket
         // stage('Uploading graph to s3 bucket') {
         //     steps {
