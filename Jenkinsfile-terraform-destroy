@@ -7,7 +7,7 @@ pipeline {
         stage('Terraform destroy') {
             steps {
               dir('/var/jenkins_home/workspace/terraform-job') {
-                sh "aws s3 rm ${params.bucket_url}/graph.png"
+                // sh "aws s3 rm ${params.bucket_url}/graph.png"
                 sh "aws s3 rm ${params.bucket_url}/graph.png --recursive"
                 sh 'terraform destroy --auto-approve'
               }
