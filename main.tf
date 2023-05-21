@@ -72,6 +72,11 @@
 
 # TERRAFORM CONFIGURED!!! 🎉🎉🎉
 
+
+# install graph
+# ==============
+# 💲 sudo apt install graphviz
+
 # creating pipeline that will will get terraform code from github and exercutes it
 # ===================================================================================
 # git@github.com:MarkeyBass/jenlins-terraform.git
