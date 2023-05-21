@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'cd ~/workspace/terraform-job'
                 // sh 'cd /var/jenkins/workspace/terraform-job'
+                sh 'terraform init'
                 sh 'aws s3 rm s3://terraform-jenkins-bucket-pub/graph.png'
                 sh 'terraform destroy --auto-approve'
             }
