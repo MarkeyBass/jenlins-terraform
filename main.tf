@@ -74,6 +74,7 @@
 
 # creating pipeline that will will get terraform code from github and exercutes it
 # ===================================================================================
+# git@github.com:MarkeyBass/jenlins-terraform.git
 
 provider "aws" {
   region = "us-east-1"
@@ -90,6 +91,19 @@ resource "aws_s3_bucket" "terraform-jenkins-bucket" {
   bucket = "terraform-jenkins-bucket-1"
 
 }
+
+# resource "aws_s3_bucket" "terraform-jenkins-bucket"{
+#     bucket = "terraform-jenkins-bucket"
+# }
+
+
+resource "aws_s3_bucket_public_access_block" "terraform-jenkins-bucket2" {
+  bucket = aws_s3_bucket.terraform-jenkins-bucket.id
+
+  block_public_acls   = false
+  block_public_policy = false
+}
+
 
 
 # Putting it to gitub
