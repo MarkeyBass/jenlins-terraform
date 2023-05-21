@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Uploading graph to s3 bucket') {
             steps {
-                'aws s3 cp ./graph.png terraform-jenkins-bucket-pub'
+                'aws s3 cp ./graph.png s3://terraform-jenkins-bucket-pub'
             }
         }
         // creating enviroment graph and dropping it into the bucket
