@@ -16,13 +16,14 @@ pipeline {
         // creating enviroment graph and dropping it into the bucket
         stage('Graph creation') {
             steps {
-                sh 'terraform graph > graph.dot'
-                sh 'dot -Tpng graph.dot -o graph.png'
+                // sh 'terraform graph > graph.dot'
+                sh "terraform graph > ${params.graph_file}"
+                sh "dot -Tpng graph.dot -o  ${params.graph_img}"
             }
         }
         stage('Uploading graph to s3 bucket') {
             steps {
-                sh 'aws s3 cp ./graph.png s3://terraform-jenkins-bucket-pub'
+                sh "aws s3 cp ./${params.graph_img} s3://terraform-jenkins-bucket-pub"
             }
         }
         // creating enviroment graph and dropping it into the bucket
